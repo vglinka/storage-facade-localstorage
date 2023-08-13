@@ -1,4 +1,4 @@
-# 🔥 Storage facade
+# 🔥 Storage facade localStorage
 
 An simple way to store data in localStorage.
 Supports caching, iteration and default values.
