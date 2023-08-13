@@ -121,7 +121,6 @@ const storage = createStorage({
   asyncMode: false,
 });
 
-
 try {
   console.log(storage.value) // undefined
 
