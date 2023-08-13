@@ -108,7 +108,7 @@ try {
 }
 ```
 
-### Sync '...Default' methods
+### '...Default' methods
 
 ```TypeScript
 import { createStorage } from 'storage-facade';
