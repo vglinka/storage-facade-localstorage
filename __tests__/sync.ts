@@ -36,6 +36,56 @@ testsSetup.forEach((setup) => {
     expect(storage.value).toEqual({ c: [40, 42] });
   });
 
+  it(`Sync, ${setup.name}: case-sensitive`, () => {
+    const storage = createStorage({
+      use: new LocalStorageInterface({
+        useCache: setup.useCache,
+      }),
+      asyncMode: false,
+    });
+
+    storage.value = 20;
+    expect(storage.Value).toEqual(undefined);
+    //             ^
+
+    storage.Value = 30;
+    //      ^
+    expect(storage.value).toEqual(20);
+  });
+
+  it(`Sync, ${setup.name}: ref problem (need structuredClone)`, () => {
+    const storage = createStorage({
+      use: new LocalStorageInterface({
+        useCache: setup.useCache,
+      }),
+      asyncMode: false,
+    });
+
+    // set value
+    const a = { c: [40, 42] };
+    storage.value = a;
+    a.c = [30];
+    expect(storage.value).toEqual({ c: [40, 42] });
+
+    // get value
+    const b = storage.value;
+    (b as Record<string, unknown>).c = [40];
+    expect(storage.value).toEqual({ c: [40, 42] });
+
+    // Test new session, cache is empty
+    const newStorage = createStorage({
+      use: new LocalStorageInterface({
+        useCache: setup.useCache,
+      }),
+      asyncMode: false,
+    });
+
+    // get value
+    const t = newStorage.value;
+    (t as Record<string, unknown>).c = [90];
+    expect(newStorage.value).toEqual({ c: [40, 42] });
+  });
+
   it(`Sync, ${setup.name}: addDefault`, () => {
     const storage = createStorage({
       use: new LocalStorageInterface({

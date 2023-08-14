@@ -87,13 +87,14 @@ export class LocalStorageInterface extends StorageInterface {
 
   getItemSync(key: string): unknown {
     if (this.useCache && this.keyValueCache.has(key)) {
-      return this.keyValueCache.get(key);
+      return structuredClone(this.keyValueCache.get(key));
     }
     const valueStr = window.localStorage.getItem(this.keyName(key));
     if (valueStr === null) return undefined;
     const { value } = JSON.parse(valueStr) as WrappedValue;
     // Update keyValue cache
-    if (this.useCache) this.keyValueCache.set(key, value);
+    if (this.useCache)
+      this.keyValueCache.set(key, structuredClone(value));
     return value;
   }
 
@@ -124,7 +125,9 @@ export class LocalStorageInterface extends StorageInterface {
       JSON.stringify(wrappedValue)
     );
     // Update keyValue cache
-    if (this.useCache) this.keyValueCache.set(key, value);
+    if (this.useCache) {
+      this.keyValueCache.set(key, structuredClone(value));
+    }
   }
 
   removeItemSync(key: string): void {
