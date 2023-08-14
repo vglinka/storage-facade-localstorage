@@ -26,10 +26,9 @@ const testsSetup = [
 testsSetup.forEach((setup) => {
   it(`Sync, ${setup.name}: read/write`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: setup.useCache,
-      }),
+      use: new LocalStorageInterface(),
       asyncMode: false,
+      name: 'settings',
     });
 
     storage.value = { c: [40, 42] };
@@ -38,9 +37,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: case-sensitive`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: setup.useCache,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -55,9 +53,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: ref problem (need structuredClone)`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: setup.useCache,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -74,9 +71,8 @@ testsSetup.forEach((setup) => {
 
     // Test new session, cache is empty
     const newStorage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: setup.useCache,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -88,9 +84,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: addDefault`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -111,9 +106,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: getDefault`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -124,9 +118,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: setDefault`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -141,9 +134,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: clearDefault`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -157,9 +149,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: delete key`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -178,9 +169,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: clear storage`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -195,9 +185,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: size`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -210,9 +199,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: key`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 
@@ -224,9 +212,8 @@ testsSetup.forEach((setup) => {
 
   it(`Sync, ${setup.name}: iter`, () => {
     const storage = createStorage({
-      use: new LocalStorageInterface({
-        useCache: true,
-      }),
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
     });
 

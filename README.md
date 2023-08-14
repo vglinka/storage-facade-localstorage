@@ -45,11 +45,10 @@ import { createStorage } from 'storage-facade';
 import { LocalStorageInterface } from 'storage-facade-localstorage';
 
 const storage = createStorage({
-  use: new LocalStorageInterface({
-    // If you are using cache,
-    // don't create more than one instance at the same time
-    useCache: true,  
-  }),
+  use: new LocalStorageInterface(),
+  // If you are using cache,
+  // don't create more than one instance at the same time
+  useCache: true, // false by default
   asyncMode: false, // localStorage is synchronous storage 
   name: 'settings', // Storage name, optional
 });
@@ -80,9 +79,8 @@ import { createStorage } from 'storage-facade';
 import { LocalStorageInterface } from 'storage-facade-localstorage';
 
 const storage = createStorage({
-  use: new LocalStorageInterface({
-    useCache: true,
-  }),
+  use: new LocalStorageInterface(),
+  useCache: true,
   asyncMode: false,
 });
 
@@ -116,9 +114,8 @@ import { createStorage } from 'storage-facade';
 import { LocalStorageInterface } from 'storage-facade-localstorage';
 
 const storage = createStorage({
-  use: new LocalStorageInterface({
-    useCache: true,
-  }),
+  use: new LocalStorageInterface(),
+  useCache: true,
   asyncMode: false,
 });
 
@@ -210,9 +207,8 @@ import { createStorage, keyIsNotBanned } from 'storage-facade';
 import { LocalStorageInterface } from 'storage-facade-localstorage';
 
 const storage = createStorage({
-  use: new LocalStorageInterface({
-    useCache: true,
-  }),
+  use: new LocalStorageInterface(),
+  useCache: true,
   asyncMode: false,
 });
 

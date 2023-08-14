@@ -31,16 +31,11 @@ export class LocalStorageInterface extends StorageInterface {
 
   keysArrayName = '';
 
-  useCache: boolean;
+  useCache: boolean = defaultUseCache;
 
   keysArrayCache: string[] = [];
 
   keyValueCache = new Map<string, unknown>();
-
-  constructor(setup?: LocalStorageSetup) {
-    super();
-    this.useCache = setup?.useCache ?? defaultUseCache;
-  }
 
   getKeysArray(): string[] {
     const keysStr = window.localStorage.getItem(this.keysArrayName);
@@ -59,6 +54,7 @@ export class LocalStorageInterface extends StorageInterface {
     setup: Setup<T>
   ): Error | undefined {
     this.storageName = setup.name ?? defaultStorageName;
+    this.useCache = (setup.useCache as boolean) ?? defaultUseCache;
     this.keysArrayName = `__${this.storageName}-keys-array`;
     try {
       const keysStr = window.localStorage.getItem(this.keysArrayName);
