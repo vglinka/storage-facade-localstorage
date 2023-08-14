@@ -179,12 +179,17 @@ Assigning keys of the second or more levels will not give any effect.
 Instead, use the following approach:
 
 ```TypeScript
+  // Don't do
+  storage.value.user.data = 42; // no effect
+
+  // The right way:
+  
   // Get object
   const updatedValue = storage.value;
   // Modify the inner content of an object
   updatedValue.user.data = 42;
   // Update storage
-  storage.value = updatedValue;
+  storage.value = updatedValue; // Ок
 ```
 
 ## If you are using caching
