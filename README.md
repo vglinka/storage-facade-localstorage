@@ -95,7 +95,7 @@ try {
       return [key, value];
     });
 
-  console.log(array)
+  console.log(array);
   /*
     [
       ['value', 4],
