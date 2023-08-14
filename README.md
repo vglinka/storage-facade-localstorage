@@ -232,7 +232,8 @@ Only values of type `string` can be used as keys.
 
 ## Values for `...Default` methods
 
-Values for `...Default` methods should be of any [structured-cloneable type (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types). 
+Values for [`addDefault`, `setDefault`] methods
+should be of any [structured-cloneable type (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types). 
 
 
 
