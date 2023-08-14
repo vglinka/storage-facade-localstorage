@@ -51,7 +51,7 @@ const storage = createStorage({
     useCache: true,  
   }),
   asyncMode: false, // localStorage is synchronous storage 
-  name: 'settings'; // Storage name, optional
+  name: 'settings', // Storage name, optional
 });
 
 // If an initialization error occurs,
