@@ -48,9 +48,10 @@ const storage = createStorage({
   use: new LocalStorageInterface({
     // If you are using cache,
     // don't create more than one instance at the same time
-    useCache: true,
+    useCache: true,  
   }),
   asyncMode: false, // localStorage is synchronous storage 
+  name: 'settings'; // Storage name, optional
 });
 
 // If an initialization error occurs,
@@ -174,6 +175,22 @@ Only first-level keys (like `storage.a =`, but not `storage.a[0] =`
 or `storage.a.b =`) are in sync with the storage.
 
 Assigning keys of the second or more levels will not give any effect.
+
+Instead, use the following approach:
+
+```TypeScript
+  // Get object
+  const updatedValue = storage.value;
+  // Modify the inner content of an object
+  updatedValue.user.data = 42;
+  // Update storage
+  storage.value = updatedValue;
+```
+
+## If you are using caching
+
+1. Don't create more than one instance at the same time.
+2. Values should be of any [structured-cloneable type](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types).
 
 ## Don't use banned key names
 
