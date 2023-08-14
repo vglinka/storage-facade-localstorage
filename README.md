@@ -146,7 +146,7 @@ try {
   console.log(storage.value); // 1
   
   // getDefault
-  console.log(storage.getDefault()); // { value: 1, value2: 2 }
+  console.log(storage.getDefault()); // { value: 1, value2: 2, other: 3 }
   
   // Replace 'default'
   storage.setDefault({ value: 30 });
