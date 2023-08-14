@@ -176,14 +176,14 @@ or `storage.a.b =`) are in sync with the storage.
 
 Assigning keys of the second or more levels will not give any effect.
 
+```TypeScript
+  // Don't do that
+  storage.value.user.data = 42; // no effect
+```
+
 Instead, use the following approach:
 
 ```TypeScript
-  // Don't do
-  storage.value.user.data = 42; // no effect
-
-  // The right way:
-  
   // Get object
   const updatedValue = storage.value;
   // Modify the inner content of an object
