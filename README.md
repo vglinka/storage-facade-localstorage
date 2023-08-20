@@ -46,11 +46,11 @@ import { LocalStorageInterface } from 'storage-facade-localstorage';
 
 const storage = createStorage({
   use: new LocalStorageInterface(),
-  // If you are using cache,
-  // don't create more than one instance at the same time
+  // If you are using a cache, do not create more than one instance
+  // with the same `name` property at the same time
   useCache: true, // false by default
+  name: 'settings', // Storage name, optional, default: 'storage'
   asyncMode: false, // localStorage is synchronous storage 
-  name: 'settings', // Storage name, optional
 });
 
 // If an initialization error occurs,
@@ -191,7 +191,7 @@ Instead, use the following approach:
 
 ## If you are using caching
 
-1. Don't create more than one instance at the same time.
+1. Don't create more than one instance with the same `name` property at the same time.
 2. Values should be of any [structured-cloneable type](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types).
 
 ## Don't use banned key names

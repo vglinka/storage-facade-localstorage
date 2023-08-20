@@ -27,12 +27,45 @@ testsSetup.forEach((setup) => {
   it(`Sync, ${setup.name}: read/write`, () => {
     const storage = createStorage({
       use: new LocalStorageInterface(),
+      useCache: setup.useCache,
       asyncMode: false,
       name: 'settings',
     });
 
     storage.value = { c: [40, 42] };
     expect(storage.value).toEqual({ c: [40, 42] });
+  });
+
+  it(`Sync, ${setup.name}: different names`, () => {
+    const storage = createStorage({
+      use: new LocalStorageInterface(),
+      useCache: setup.useCache,
+      asyncMode: false,
+      name: 'settings',
+    });
+
+    storage.value = 10;
+
+    expect(storage.value).toEqual(10);
+
+    const storage2 = createStorage({
+      use: new LocalStorageInterface(),
+      asyncMode: false,
+      name: 'settings2',
+    });
+
+    expect(storage.value).toEqual(10);
+    expect(storage2.value).toEqual(undefined);
+
+    storage2.value = 20;
+
+    expect(storage.value).toEqual(10);
+    expect(storage2.value).toEqual(20);
+
+    storage.clear();
+
+    expect(storage.value).toEqual(undefined);
+    expect(storage2.value).toEqual(20);
   });
 
   it(`Sync, ${setup.name}: case-sensitive`, () => {
