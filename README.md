@@ -265,7 +265,7 @@ Instead, use the following approach:
 ## If you are using caching
 
 1. Don't create more than one instance with the same `name` property at the same time.
-2. Values should be of any [structured-cloneable type](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types).
+2. Values should be of any [structured-cloneable type (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types).
 
 ## Don't use banned key names
 
