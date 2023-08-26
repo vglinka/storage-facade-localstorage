@@ -9,6 +9,7 @@ import {
   StorageInterface,
   type Setup,
   defaultStorageName,
+  Ok,
 } from 'storage-facade';
 
 export const defaultUseCache = false;
@@ -50,9 +51,7 @@ export class LocalStorageInterface extends StorageInterface {
     return keys;
   }
 
-  initSync<T extends StorageInterface>(
-    setup: Setup<T>
-  ): Error | undefined {
+  initSync<T extends StorageInterface>(setup: Setup<T>): Error | Ok {
     this.storageName = setup.name ?? defaultStorageName;
     this.useCache = (setup.useCache as boolean) ?? defaultUseCache;
     this.keysArrayName = `__${this.storageName}-keys-array`;
@@ -71,7 +70,7 @@ export class LocalStorageInterface extends StorageInterface {
         // Load keysArray to cache
         this.keysArrayCache = keysArray;
       }
-      return undefined;
+      return new Ok();
     } catch (e) {
       return e as Error;
     }
