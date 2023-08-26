@@ -50,9 +50,9 @@ will create such keys in localStorage:
 
 ![localStorage](https://raw.githubusercontent.com/vglinka/storage-facade-localstorage/main/assets/localStorage.png)
 
-As you can see, each store is separated from the other by a prefix,
-and they are wrapped in an object, which allows `null` values to be stored.
-For each store, there is a variable that stores a list of keys and their order.
+As you can see, each storage is separated from the other by a prefix,
+and each value is wrapped in an object, allowing `null` values to be stored.
+For each storage, there is a variable that stores a list of keys and their order.
 Thus, one of the storages can be cleared without affecting the other storage,
 or other keys from other libraries also stored in localStorage.
 
@@ -111,7 +111,7 @@ try {
   // Make changes
   updatedValue.data = [10, 45];
   // Update storage
-  storage.value = updatedValue;
+  storage.value = updatedValue; // Ok
   
   // Read value
   console.log((storage.value as Record<string, unknown>).data); // [10, 45]
