@@ -238,8 +238,6 @@ and then assign it to the first level key.
 
 Assigning keys of the second or more levels will not give any effect.
 
-sync:
-
 ```TypeScript
   // Read
   console.log((storage.value as Record<string, unknown>).data); // Ok
