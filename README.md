@@ -51,10 +51,11 @@ will create such keys in localStorage:
 ![localStorage](https://raw.githubusercontent.com/vglinka/storage-facade-localstorage/main/assets/localStorage.png)
 
 As you can see, each storage is separated from the other by a prefix,
-and each value is wrapped in an object, allowing `null` values to be stored.
-For each storage, there is a variable that stores a list of keys and their order.
-Thus, one of the storages can be cleared without affecting the other storage,
-or other keys from other libraries also stored in localStorage.
+and each value is wrapped in an object `{ value: ... }`,
+allowing `null` values to be stored. For each storage, there is a variable
+that stores a list of keys and their order. Thus, one of the storages
+can be cleared without affecting the other storage, or other keys from other
+libraries also stored in localStorage.
 
 # Usage
 
