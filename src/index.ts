@@ -44,10 +44,10 @@ export class LocalStorageInterface extends StorageInterface {
   getKeysArray(): string[] {
     const keysStr = window.localStorage.getItem(this.keysArrayName);
     if (keysStr === null) {
-      const msg =
-        `storage-facade: ${this.interfaceName}: ` +
-        `'${this.keysArrayName}' not found.`;
-      throw Error(msg);
+      const err = this.interfaceError(
+        `'${this.keysArrayName}' not found.`
+      );
+      throw err;
     }
     const keys = JSON.parse(keysStr) as string[];
     if (this.useCache) this.keysArrayCache = keys;
@@ -102,10 +102,8 @@ export class LocalStorageInterface extends StorageInterface {
 
   setItemSync(key: string, value: unknown): void {
     if (key === this.keysArrayName) {
-      const msg =
-        `storage-facade: ${this.interfaceName}:` +
-        `key '${key}' cannot be used.`;
-      throw Error(msg);
+      const err = this.interfaceError(`key '${key}' cannot be used.`);
+      throw err;
     }
     const keysArray = this.useCache
       ? this.keysArrayCache
