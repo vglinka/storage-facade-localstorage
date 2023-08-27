@@ -13,6 +13,7 @@ import {
 } from 'storage-facade';
 
 export const defaultUseCache = false;
+export const defaultAsyncMode = false;
 
 // localStorage returns `null`, not `undefined` if no value is found.
 // For this reason, it is necessary to wrap values in order
@@ -34,6 +35,8 @@ export class LocalStorageInterface extends StorageInterface {
 
   useCache: boolean = defaultUseCache;
 
+  asyncMode: boolean = defaultAsyncMode;
+
   keysArrayCache: string[] = [];
 
   keyValueCache = new Map<string, unknown>();
@@ -49,6 +52,10 @@ export class LocalStorageInterface extends StorageInterface {
     const keys = JSON.parse(keysStr) as string[];
     if (this.useCache) this.keysArrayCache = keys;
     return keys;
+  }
+
+  defaultAsyncMode(): boolean {
+    return this.asyncMode;
   }
 
   initSync<T extends StorageInterface>(setup: Setup<T>): Error | Ok {

@@ -28,7 +28,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
       name: 'settings',
     });
 
@@ -40,7 +39,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
       name: 'settings',
     });
 
@@ -50,7 +48,6 @@ testsSetup.forEach((setup) => {
 
     const storage2 = createStorage({
       use: new TestedInterface(),
-      asyncMode: false,
       name: 'settings2',
     });
 
@@ -72,7 +69,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.value = 20;
@@ -88,7 +84,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     // set value
@@ -106,7 +101,6 @@ testsSetup.forEach((setup) => {
     const newStorage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     // get value
@@ -119,7 +113,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 9 });
@@ -141,7 +134,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 2, other: 7 });
@@ -153,7 +145,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 2, other: 7 });
@@ -169,7 +160,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 2, other: 7 });
@@ -184,7 +174,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 2 });
@@ -204,7 +193,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 2 });
@@ -220,7 +208,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 2 });
@@ -234,7 +221,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 2 });
@@ -247,7 +233,6 @@ testsSetup.forEach((setup) => {
     const storage = createStorage({
       use: new TestedInterface(),
       useCache: setup.useCache,
-      asyncMode: false,
     });
 
     storage.addDefault({ value: 2 });

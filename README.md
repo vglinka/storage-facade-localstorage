@@ -5,7 +5,7 @@ Supports caching, iteration and default values.
 Written in TypeScript.
 Uses the [storage-facade](https://www.npmjs.com/package/storage-facade)
 library which is provides a single storage API that abstracts over
-the actual storage implementation. 
+the actual storage implementation.
 
 ## Installation
 
@@ -25,20 +25,18 @@ const storage1 = createStorage({
   use: new LocalStorageInterface(),
   name: 'storageOne', // Storage name
   useCache: true,
-  asyncMode: false,
 });
 
 const storage2 = createStorage({
   use: new LocalStorageInterface(),
   name: 'storageTwo', // Storage name
   useCache: true,
-  asyncMode: false,
 });
 
 try {
   storage1.value = { data: [40, 42] };
   storage1.otherValue = 10;
-  
+
   storage2.value = { data: [11, 90] };
   storage2.otherValue = 30;
 } catch (e) {
@@ -81,7 +79,7 @@ Default values are not stored in the storage, but in the instance.
 ## Examples
 
 ### Read/Write/Delete
-  
+
 ```TypeScript
 import { createStorage } from 'storage-facade';
 import { LocalStorageInterface } from 'storage-facade-localstorage';
@@ -92,7 +90,6 @@ const storage = createStorage({
   // with the same `name` property at the same time
   useCache: true, // false by default
   name: 'settings', // Storage name, optional, default: 'storage'
-  asyncMode: false, // localStorage is synchronous storage 
 });
 
 // If an initialization error occurs,
@@ -100,10 +97,10 @@ const storage = createStorage({
 try {
   // Write value
   storage.value = { data: [40, 42] };
-  
+
   // Read value
   console.log(storage.value); // { data: [40, 42] }
-  
+
   // When writing, accesses to first-level keys are intercepted only,
   // so if you need to make changes inside the object,
   // you need to make changes and then assign it to the first level key.
@@ -113,21 +110,21 @@ try {
   updatedValue.data = [10, 45];
   // Update storage
   storage.value = updatedValue; // Ok
-  
+
   // Read value
   console.log((storage.value as Record<string, unknown>).data); // [10, 45]
-  
+
   // OR
   const value = storage.value as Record<string, unknown>;
   console.log(value.data); // [10, 45]
-  
+
   // Delete value
   delete storage.value;
   console.log(storage.value); // undefined
-  
+
   storage.value = 30;
   console.log(storage.value); // 30
-  
+
   // Clear storage
   storage.clear();
   console.log(storage.value); // undefined
@@ -145,7 +142,6 @@ import { LocalStorageInterface } from 'storage-facade-localstorage';
 const storage = createStorage({
   use: new LocalStorageInterface(),
   useCache: true,
-  asyncMode: false,
 });
 
 try {
@@ -180,7 +176,6 @@ import { LocalStorageInterface } from 'storage-facade-localstorage';
 const storage = createStorage({
   use: new LocalStorageInterface(),
   useCache: true,
-  asyncMode: false,
 });
 
 try {
@@ -188,10 +183,10 @@ try {
 
   storage.addDefault({ value: 9, other: 3 });
   storage.addDefault({ value: 1, value2: 2 });
-  
+
   // Since `storage.value = undefined` the default value is used
   console.log(storage.value);  // 1
-  
+
   console.log(storage.value2); // 2
   console.log(storage.other);  // 3
 
@@ -205,22 +200,22 @@ try {
 
   storage.value = null;
   console.log(storage.value); // null
-  
+
   delete storage.value;
   console.log(storage.value); // 1
-  
+
   // getDefault
   console.log(storage.getDefault()); // { value: 1, value2: 2, other: 3 }
-  
+
   // Replace 'default'
   storage.setDefault({ value: 30 });
 
   console.log(storage.value); // 30
   console.log(storage.value2); // undefined
-  
+
   // clearDefault
   storage.clearDefault();
-  
+
   console.log(storage.value); // undefined
   console.log(storage.value2); // undefined
 } catch (e) {
@@ -283,7 +278,6 @@ import { LocalStorageInterface } from 'storage-facade-localstorage';
 const storage = createStorage({
   use: new LocalStorageInterface(),
   useCache: true,
-  asyncMode: false,
 });
 
 try {
@@ -303,7 +297,7 @@ Only values of type `string` can be used as keys.
 ## Values for `...Default` methods
 
 Values for [`addDefault`, `setDefault`] methods
-should be of any [structured-cloneable type (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types). 
+should be of any [structured-cloneable type (MDN)](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Structured_clone_algorithm#supported_types).
 
 
 
