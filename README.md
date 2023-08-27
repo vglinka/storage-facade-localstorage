@@ -15,7 +15,7 @@ npm install storage-facade@3 storage-facade-localstorage
 
 # Data structure
 
-The following code
+The following code 
 
 ```TypeScript
 import { createStorage } from 'storage-facade';
@@ -34,13 +34,15 @@ const storage2 = createStorage({
 });
 
 try {
-  storage1.value = { data: [40, 42] };
-  storage1.otherValue = 10;
-
-  storage2.value = { data: [11, 90] };
-  storage2.otherValue = 30;
+  storage1.pen = { data: [40, 42] };
+  storage1.pineApple = 10;
+  
+  storage2.apple = [1, 2, 3];
+  storage2.pen = 'Uh!';
 } catch (e) {
   console.error((e as Error).message);
+  // If you are not using TypeScript replace this line with
+  // console.error(e.message);
 }
 ```
 
