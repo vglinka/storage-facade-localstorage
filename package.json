@@ -1,6 +1,6 @@
 {
   "name": "storage-facade-localstorage",
-  "version": "4.0.1",
+  "version": "4.1.0",
   "description": "An simple way to store data in localStorage.",
   "author": "Vadim Glinka <vadgit@yandex.com>",
   "license": "(MIT OR Apache-2.0)",
@@ -71,6 +71,6 @@
     "typescript": "^4.8.3"
   },
   "dependencies": {
-    "storage-facade": "^3.1.1"
+    "storage-facade": "^3.2.2"
   }
 }

@@ -63,6 +63,7 @@ libraries also stored in localStorage.
 
 - `.clear()` - removes all key-value pairs from the storage
 - `.entries()` - returns an array of key-value pairs
+- `.deleteStorage()` - delete storage, the array of keys will also be removed
 - `.size()` - returns the number of key-value pairs
 - `.key(index: number)` - returns the name of the key by its index
 
@@ -130,6 +131,12 @@ try {
   // Clear storage
   storage.clear();
   console.log(storage.value); // undefined
+  
+  // Delete storage
+  // The array of keys will also be removed
+  storage.deleteStorage();
+  // An error will be thrown when trying to access
+  // console.log(storage.value); // Error: 'This Storage was deleted!'
 } catch (e) {
   console.error((e as Error).message);
 }
@@ -268,8 +275,8 @@ Instead, use the following approach:
 ## Don't use banned key names
 
 There is a list of key names that cannot be used because they are the same
-as built-in method names: [`open`, `clear`, `size`, `key`, `getEntries`,
-`entries`, `addDefault`, `setDefault`, `getDefault`, `clearDefault`].
+as built-in method names: [`open`, `clear`, `deleteStorage`, `size`, `key`,
+`getEntries`, `entries`, `addDefault`, `setDefault`, `getDefault`, `clearDefault`].
 
 Use the `keyIsNotBanned` function to check the key if needed.
 

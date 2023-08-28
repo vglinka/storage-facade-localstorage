@@ -109,6 +109,27 @@ testsSetup.forEach((setup) => {
     expect(newStorage.value).toEqual({ c: [40, 42] });
   });
 
+  it(`Sync, ${setup.name}: delete storage`, () => {
+    const storage = createStorage({
+      use: new TestedInterface(),
+      useCache: setup.useCache,
+    });
+
+    storage.value = 42;
+
+    storage.deleteStorage();
+
+    expect.assertions(1);
+    try {
+      // eslint-disable-next-line no-console
+      console.log(storage.value);
+    } catch (e) {
+      expect((e as Error).message).toMatch(
+        'This Storage was deleted!'
+      );
+    }
+  });
+
   it(`Sync, ${setup.name}: addDefault`, () => {
     const storage = createStorage({
       use: new TestedInterface(),

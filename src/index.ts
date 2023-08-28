@@ -41,6 +41,8 @@ export class LocalStorageInterface extends StorageInterface {
 
   keyValueCache = new Map<string, unknown>();
 
+  isDeleted = false;
+
   getKeysArray(): string[] {
     const keysStr = window.localStorage.getItem(this.keysArrayName);
     if (keysStr === null) {
@@ -83,11 +85,16 @@ export class LocalStorageInterface extends StorageInterface {
     }
   }
 
+  checkStorage(): void {
+    if (this.isDeleted) throw Error('This Storage was deleted!');
+  }
+
   keyName(key: string): string {
     return `${this.storageName}-${key}`;
   }
 
   getItemSync(key: string): unknown {
+    this.checkStorage();
     if (this.useCache && this.keyValueCache.has(key)) {
       return structuredClone(this.keyValueCache.get(key));
     }
@@ -101,6 +108,7 @@ export class LocalStorageInterface extends StorageInterface {
   }
 
   setItemSync(key: string, value: unknown): void {
+    this.checkStorage();
     if (key === this.keysArrayName) {
       const err = this.interfaceError(`key '${key}' cannot be used.`);
       throw err;
@@ -131,6 +139,7 @@ export class LocalStorageInterface extends StorageInterface {
   }
 
   removeItemSync(key: string): void {
+    this.checkStorage();
     const keysArray = this.useCache
       ? this.keysArrayCache
       : this.getKeysArray();
@@ -151,6 +160,7 @@ export class LocalStorageInterface extends StorageInterface {
   }
 
   clearSync(): void {
+    this.checkStorage();
     const keysArray = this.useCache
       ? this.keysArrayCache
       : this.getKeysArray();
@@ -171,6 +181,7 @@ export class LocalStorageInterface extends StorageInterface {
   }
 
   sizeSync(): number {
+    this.checkStorage();
     const keysArray = this.useCache
       ? this.keysArrayCache
       : this.getKeysArray();
@@ -178,9 +189,16 @@ export class LocalStorageInterface extends StorageInterface {
   }
 
   keySync(index: number): string {
+    this.checkStorage();
     const keysArray = this.useCache
       ? this.keysArrayCache
       : this.getKeysArray();
     return keysArray[index];
+  }
+
+  deleteStorageSync(): void {
+    this.clearSync();
+    window.localStorage.removeItem(this.keysArrayName);
+    this.isDeleted = true;
   }
 }
