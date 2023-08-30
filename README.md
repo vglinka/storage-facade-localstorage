@@ -10,12 +10,12 @@ the actual storage implementation.
 ## Installation
 
 ```sh
-npm install storage-facade@3 storage-facade-localstorage
+npm install storage-facade@4 storage-facade-localstorage@5
 ```
 
 # Data structure
 
-The following code 
+The following code
 
 ```TypeScript
 import { createStorage } from 'storage-facade';
@@ -36,7 +36,7 @@ const storage2 = createStorage({
 try {
   storage1.pen = { data: [40, 42] };
   storage1.pineApple = 10;
-  
+
   storage2.apple = [1, 2, 3];
   storage2.pen = 'Uh!';
 } catch (e) {
@@ -131,7 +131,7 @@ try {
   // Clear storage
   storage.clear();
   console.log(storage.value); // undefined
-  
+
   // Delete storage
   // The array of keys will also be removed
   storage.deleteStorage();
@@ -275,7 +275,7 @@ Instead, use the following approach:
 ## Don't use banned key names
 
 There is a list of key names that cannot be used because they are the same
-as built-in method names: [`open`, `clear`, `deleteStorage`, `size`, `key`,
+as built-in method names: [`clear`, `deleteStorage`, `size`, `key`,
 `getEntries`, `entries`, `addDefault`, `setDefault`, `getDefault`, `clearDefault`].
 
 Use the `keyIsNotBanned` function to check the key if needed.

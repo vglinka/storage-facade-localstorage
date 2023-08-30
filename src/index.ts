@@ -188,7 +188,7 @@ export class LocalStorageInterface extends StorageInterface {
     return keysArray.length;
   }
 
-  keySync(index: number): string {
+  keySync(index: number): string | undefined {
     this.checkStorage();
     const keysArray = this.useCache
       ? this.keysArrayCache
@@ -197,6 +197,7 @@ export class LocalStorageInterface extends StorageInterface {
   }
 
   deleteStorageSync(): void {
+    this.checkStorage();
     this.clearSync();
     window.localStorage.removeItem(this.keysArrayName);
     this.isDeleted = true;
