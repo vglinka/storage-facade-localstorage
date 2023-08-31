@@ -15,17 +15,6 @@ import {
 export const defaultUseCache = false;
 export const defaultAsyncMode = false;
 
-// localStorage returns `null`, not `undefined` if no value is found.
-// For this reason, it is necessary to wrap values in order
-// to be able to store `null` values.
-export type WrappedValue = Record<'value', unknown>;
-
-export interface LocalStorageSetup {
-  // If you are using cache, don't create more than one instance at the same time
-  useCache?: boolean;
-  [key: string]: unknown;
-}
-
 export class LocalStorageInterface extends StorageInterface {
   interfaceName = 'LocalStorageInterface';
 
@@ -99,8 +88,13 @@ export class LocalStorageInterface extends StorageInterface {
       return structuredClone(this.keyValueCache.get(key));
     }
     const valueStr = window.localStorage.getItem(this.keyName(key));
-    if (valueStr === null) return undefined;
-    const { value } = JSON.parse(valueStr) as WrappedValue;
+    if (valueStr === null || valueStr === 'undefined') {
+      return undefined;
+    }
+    if (valueStr === 'null') {
+      return null;
+    }
+    const value = JSON.parse(valueStr) as unknown;
     // Update keyValue cache
     if (this.useCache)
       this.keyValueCache.set(key, structuredClone(value));
@@ -116,7 +110,6 @@ export class LocalStorageInterface extends StorageInterface {
     const keysArray = this.useCache
       ? this.keysArrayCache
       : this.getKeysArray();
-    const wrappedValue: WrappedValue = { value };
     if (!keysArray.includes(key)) {
       keysArray.push(key);
       // Update keys array in storage
@@ -130,7 +123,7 @@ export class LocalStorageInterface extends StorageInterface {
     // Update storage
     window.localStorage.setItem(
       this.keyName(key),
-      JSON.stringify(wrappedValue)
+      JSON.stringify(value)
     );
     // Update keyValue cache
     if (this.useCache) {
